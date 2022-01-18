@@ -32,22 +32,45 @@ function dynForm(f) {
 
   let myForm = document.forms['dynForm'];
 
-  
-    for (let i = 0; i < formDef1.length; i++) {
-      if((f[i].kind == "longtext") || (f[i].kind == "number") || (f[i].kind == "shorttext")){
-        let div1 = document.createElement('div');
-        let label1 = document.createElement('label');
-        let text1 = document.createTextNode(f[i].label);
-        let input1 = document.createElement('input');
-        input1.type = f[i].kind;
-        input1.name = f[i].name;
-        label1.appendChild(text1);
-        label1.appendChild(input1);
-        div1.appendChild(label1);
-        myForm.appendChild(div1);
-      }
+
+  for (let i = 0; i < formDef1.length; i++) {
+    if ((f[i].kind == "longtext") || (f[i].kind == "number") || (f[i].kind == "shorttext")) {
+      let div = document.createElement('div');
+      let label = document.createElement('label');
+      let text = document.createTextNode(f[i].label);
+      let input = document.createElement('input');
+      input.type = f[i].kind;
+      input.name = f[i].name;
+      label.appendChild(text);
+      label.appendChild(input);
+      div.appendChild(label);
+      myForm.appendChild(div);
     }
-  
+
+    if (f[i].kind == 'combo') {
+      let div = document.createElement('div');
+      let label = document.createElement('label');
+      let text = document.createTextNode(f[i].label);
+      let select = document.createElement('select')
+      select.kind = f[i].kind;
+      select.name = f[i].name;
+      for (let k = 0; k < f[i].variants.length; k++) {
+        let option = document.createElement('option');
+        let optiontext = document.createTextNode(f[i].variants[k].text);
+        option.value = f[i].variants[k].value;
+        if(option.value == "3"){
+          option.selected = true;
+        }
+        option.appendChild(optiontext);
+        select.appendChild(option);
+      }
+      label.appendChild(text);
+      label.appendChild(select);
+      div.appendChild(label);
+      myForm.appendChild(div);
+    }
+  }
+
 
 
 }
