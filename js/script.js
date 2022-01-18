@@ -31,13 +31,11 @@ var formDef2 =
 function dynForm(f) {
 
   let myForm = document.createElement('form')
-  myForm.name='dynForm';
   myForm.method='post';
-  document.body.appendChild(myForm);
 
-  for (let i = 0; i < formDef1.length; i++) {
+  for (let i = 0; i < f.length; i++) {
 
-    if ((f[i].kind == "longtext") || (f[i].kind == "number") || (f[i].kind == "shorttext")) {
+    if (f[i].kind == "longtext" || f[i].kind == "number" || f[i].kind == "shorttext") {
       let div = document.createElement('div');
       let label = document.createElement('label');
       let text = document.createTextNode(f[i].label);
@@ -143,7 +141,7 @@ function dynForm(f) {
   let otstup = document.createElement('br');
   footer.appendChild(otstup);
   myForm.appendChild(footer);
+  document.body.appendChild(myForm);
 }
 
-dynForm(formDef1);
-dynForm(formDef2);
+
