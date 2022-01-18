@@ -44,6 +44,7 @@ function dynForm(f) {
       let input = document.createElement('input');
       input.type = f[i].kind;
       input.name = f[i].name;
+      input.id = "addstyle";
       label.appendChild(text);
       label.appendChild(input);
       div.appendChild(label);
@@ -106,6 +107,7 @@ function dynForm(f) {
       input.type = f[i].kind + 'box';
       input.name = f[i].votes;
       input.checked = true;
+      input.id = "inputCheck"
       label.appendChild(text);
       label.appendChild(input);
       div.appendChild(label);
